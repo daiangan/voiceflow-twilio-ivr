@@ -20,8 +20,8 @@ class TwilioAPI:
                  message: str):
         '''
         Send an SMS using Twilio API
-        :param from_number: Should have this format: +17863221909
-        :param to_number:  Should have this format: +18293101545
+        :param from_number: Should have this format: +17863221234
+        :param to_number:  Should have this format: +18293101390
         :return: Response from Twilio
         '''
 
