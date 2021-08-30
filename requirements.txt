@@ -1,0 +1,16 @@
+certifi==2021.5.30
+charset-normalizer==2.0.4
+click==8.0.1
+colorama==0.4.4
+Flask==2.0.1
+idna==3.2
+itsdangerous==2.0.1
+Jinja2==3.0.1
+MarkupSafe==2.0.1
+PyJWT==1.7.1
+pytz==2021.1
+requests==2.26.0
+six==1.16.0
+twilio==6.63.1
+urllib3==1.26.6
+Werkzeug==2.0.1
