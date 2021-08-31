@@ -9,7 +9,7 @@ app = Flask(__name__)
 
 
 @app.route('/', methods=['GET', 'POST'])
-def index():
+def home():
     if request.method == 'POST':
 
         request_data = request.form
