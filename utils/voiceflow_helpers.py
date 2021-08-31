@@ -1,7 +1,20 @@
 import json
 from dataclasses import dataclass, field
+from typing import Literal
 
 import requests
+
+
+@dataclass
+class VoiceFlowMessage:
+    type: Literal[
+        'text',
+        'audio',
+        'choices',
+        'call_forwarding',
+        'end'
+    ]
+    data: object = lambda: None
 
 
 @dataclass
@@ -17,9 +30,9 @@ class VoiceFlow:
             'Authorization': self.vf_api_key,
         }
 
-    def send_content(self,
-                     content_type: str = 'text',
-                     user_input: str = '') -> list:
+    def interact(self,
+                 content_type: str = 'text',
+                 user_input: str = '') -> list:
 
         url = f'{self.api_base_url}state/{self.vf_id}/user/{self.user_id}/interact'
 
@@ -42,53 +55,48 @@ class VoiceFlow:
             headers=headers,
         )
 
-        results = json.loads(response.text)
-        print(json.dumps(results, indent=4, sort_keys=True))
+        vf_response = json.loads(response.text)
+        print(json.dumps(vf_response, indent=4, sort_keys=True))
 
         messages = []
 
-        for result in results:
-            if result['type'] == 'speak':
-                if result['payload']['type'] == 'message':
-                    if 'call_forwarding' in result['payload']['message']:
-                        text_message = result['payload']['message']
-                        messages.append(
-                            {
-                                'type': 'call_forwarding',
-                                'phone': text_message[text_message.find(':') + 1:],
-                            }
+        for item in vf_response:
+            if item['type'] == 'speak':
+                if item['payload']['type'] == 'message':
+                    text_message = item['payload']['message']
+                    if 'call_forwarding' in item['payload']['message']:
+                        message = VoiceFlowMessage(
+                            type='call_forwarding',
+                            data=text_message[text_message.find(':') + 1:],
                         )
+                        messages.append(message)
 
                     else:
-                        messages.append(
-                            {
-                                'type': 'text',
-                                'message': result['payload']['message'],
-                            }
+                        message = VoiceFlowMessage(
+                            type='text',
+                            data=text_message,
                         )
+                        messages.append(message)
 
-                elif result['payload']['type'] == 'audio':
-                    messages.append(
-                        {
-                            'type': 'audio',
-                            'url': result['payload']['src'],
-                        }
+                elif item['payload']['type'] == 'audio':
+                    message = VoiceFlowMessage(
+                        type='audio',
+                        data=item['payload']['src']
                     )
+                    messages.append(message)
 
-            elif result['type'] == 'choice':
-                messages.append(
-                    {
-                        'type': 'choices',
-                        'choices': result['payload']['buttons'],
-                    }
+            elif item['type'] == 'choice':
+                message = VoiceFlowMessage(
+                    type='choices',
+                    data=item['payload']['buttons']
                 )
+                messages.append(message)
 
-            elif result['type'] == 'path':
-                messages.append(
-                    {
-                        'type': 'path',
-                    }
+            elif item['type'] == 'end':
+                message = VoiceFlowMessage(
+                    type='end',
                 )
+                messages.append(message)
 
         return messages
 
@@ -105,7 +113,6 @@ class VoiceFlow:
         )
 
         results = json.loads(response.text)
-        print(json.dumps(results, indent=4, sort_keys=True))
 
         return results
 
@@ -126,6 +133,5 @@ class VoiceFlow:
         )
 
         results = json.loads(response.text)
-        # print(json.dumps(results, indent=4, sort_keys=True))
 
         return results
