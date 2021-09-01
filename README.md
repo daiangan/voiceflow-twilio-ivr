@@ -1,15 +1,17 @@
 
 <p align="center">
-  <img src="https://ganmedia-projects.s3.amazonaws.com/voiceflow-twilio-ivr/header_image.jpg" alt="VoiceFlow - Twilio IVR"/>
+  <img src="https://ganmedia-projects.s3.amazonaws.com/voiceflow-twilio-ivr/header_image.jpg" width="600" alt="VoiceFlow - Twilio IVR"/>
 </p>
 
 ## VoiceFlow - Twilio IVR
 This is a Flask app to link your VoiceFlow project with your 
 Twilio phone number and create an IVR.  
 
+<br>
+
 Go to VoiceFlow and grab your Project VERSION_ID and your API_KEY from 
 the Integration tab.  
-<img src="https://ganmedia-projects.s3.amazonaws.com/voiceflow-twilio-ivr/vf_api_key.jpg" width="450" alt="Voiceflow keys"/>
+<img src="https://ganmedia-projects.s3.amazonaws.com/voiceflow-twilio-ivr/vf_api_key.jpg" width="650" alt="Voiceflow keys"/>
 
 
 Add them to your Python environment variables with the names:  

@@ -93,7 +93,6 @@ def home():
             enhanced=True,
         )
 
-
         return str(tw_resp)
 
     else:
