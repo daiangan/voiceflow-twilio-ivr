@@ -12,11 +12,11 @@ app = Flask(__name__)
 def home():
     if request.method == 'POST':
 
-        request_data = request.form
-        print(request_data)
-
         language = 'en-US'
         voice = 'alice'
+        timeout = 5
+
+        request_data = request.form
 
         tw_resp = VoiceResponse()
 
@@ -87,15 +87,12 @@ def home():
         tw_resp.gather(
             input='dtmf speech',
             language=language,
-            timeout=5,
-            # speech_timeout=15,
+            timeout=timeout,
             speech_model='numbers_and_commands',
-            # num_digits=1,
             finish_on_key='#',
             enhanced=True,
         )
 
-        print(tw_resp)
 
         return str(tw_resp)
 
