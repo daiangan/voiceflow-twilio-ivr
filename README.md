@@ -1,5 +1,7 @@
 
-### VoiceFlow - Twilio IVR
+![alt VoiceFlow - Twilio IVR](src/img/header_image.jpg)
+
+## VoiceFlow - Twilio IVR
 This is a Flask app to link your VoiceFlow project with your 
 Twilio phone number to create an IVR.  
 
@@ -21,7 +23,7 @@ your Flask app URL.
 
 #### About this project
 
-This project is created and maintained by:
+This project was created and is maintained by:
 <br>
 __Daian Gan__<br>
 Github: [daiangan](https://github.com/daiangan)<br/>
