@@ -56,11 +56,12 @@ class VoiceFlow:
         )
 
         vf_response = json.loads(response.text)
-        # print(json.dumps(vf_response, indent=4, sort_keys=True))
 
         messages = []
 
         for item in vf_response:
+            message = None
+
             if item['type'] == 'speak':
                 if item['payload']['type'] == 'message':
                     text_message = item['payload']['message']
@@ -69,33 +70,31 @@ class VoiceFlow:
                             type='call_forwarding',
                             data=text_message[text_message.find(':') + 1:],
                         )
-                        messages.append(message)
 
                     else:
                         message = VoiceFlowMessage(
                             type='text',
                             data=text_message,
                         )
-                        messages.append(message)
 
                 elif item['payload']['type'] == 'audio':
                     message = VoiceFlowMessage(
                         type='audio',
                         data=item['payload']['src']
                     )
-                    messages.append(message)
 
             elif item['type'] == 'choice':
                 message = VoiceFlowMessage(
                     type='choices',
                     data=item['payload']['buttons']
                 )
-                messages.append(message)
 
             elif item['type'] == 'end':
                 message = VoiceFlowMessage(
                     type='end',
                 )
+
+            if message:
                 messages.append(message)
 
         return messages

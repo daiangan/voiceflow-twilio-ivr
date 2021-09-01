@@ -46,12 +46,12 @@ This is important for the choices mapping to phone keypad input (more details in
 #### Features
 1. The script will handle VF choices block to let you input each choice as
 number options in the phone dial pad, and of course, keeping the voice input available.  
-   <img src="https://ganmedia-projects.s3.amazonaws.com/voiceflow-twilio-ivr/keypad_mapping.jpg" width="350" alt="Choices mapping"/>  
+   <img src="https://ganmedia-projects.s3.amazonaws.com/voiceflow-twilio-ivr/keypad_mapping.jpg" width="450" alt="Choices mapping"/>  
    _Do not forget to add the __choices__ variable to your VF project._  
    
 
 
-2. To forward a call, just use the text __call_forwarding__ followed by the phone 
+2. To forward a call, just use the text __call_forwarding:__ followed by the phone 
 number to redirect the call.  
    For example:  
    <img src="https://ganmedia-projects.s3.amazonaws.com/voiceflow-twilio-ivr/call_forwarding.jpg" width="350" alt="Call forwarding feature"/>
