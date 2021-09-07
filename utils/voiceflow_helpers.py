@@ -50,7 +50,10 @@ class VoiceFlow:
         response = requests.post(
             url,
             json={
-                'request': request
+                'request': request,
+                'config': {
+                    'stripSSML': False,
+                }
             },
             headers=headers,
         )

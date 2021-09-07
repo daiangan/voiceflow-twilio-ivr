@@ -20,7 +20,9 @@ VF_PROJECT_VERSION_ID
 VF_API_KEY
 ```
 
-Deploy your Flask app (out of this scope) and copy your app URL.
+Deploy your Flask app (out of this scope) and copy your app URL.  
+You can deploy it for free in Repl.it with the following button:  
+[![Run on Repl.it](https://repl.it/badge/github/daiangan/manychat-dialogflow-connector)](https://repl.it/github/daiangan/manychat-dialogflow-connector)
   
 Then go to Twilio and paste your app's URL as the webhook for the incoming calls 
 to your phone number.  
